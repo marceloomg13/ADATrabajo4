@@ -1,3 +1,17 @@
+##Tipo Asignaturas
+``` sql
+create or replace NONEDITIONABLE TYPE TASIGNATURAS AS OBJECT(
+    COD_ASIG NUMBER(4),
+    NOMBRE VARCHAR2(80),
+    TIPO CHAR(1)
+);
+```
+##Tabla Asignaturas
+``` sql
+CREATE TABLE TABLA_ASIGNATURAS OF TASIGNATURAS(
+  COD_ASIG PRIMARY KEY
+);
+```
 ##Varray Telefonos
 ``` sql
 CREATE TYPE TELEFONO AS VARRAY(2) OF VARCHAR2(15);
@@ -58,21 +72,6 @@ create or replace NONEDITIONABLE TYPE TCURSOS AS OBJECT(
 ``` sql
 CREATE TABLE TABLA_CURSOS OF TCURSOS(
     ID_CURSO PRIMARY KEY
-);
-```
-
-##Tipo Asignaturas
-``` sql
-create or replace NONEDITIONABLE TYPE TASIGNATURAS AS OBJECT(
-    COD_ASIG NUMBER(4),
-    NOMBRE VARCHAR2(80),
-    TIPO CHAR(1)
-);
-```
-##Tabla Asignaturas
-``` sql
-CREATE TABLE TABLA_ASIGNATURAS OF TASIGNATURAS(
-  COD_ASIG PRIMARY KEY
 );
 ```
 ##Procedimieto Almacenado
