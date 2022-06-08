@@ -1,3 +1,40 @@
+##Varray Telefonos
+``` sql
+CREATE TYPE TELEFONO AS VARRAY(2) OF VARCHAR2(15);
+```
+##Varray Notas
+``` sql
+CREATE TYPE NOTAS AS VARRAY(5) OF NUMBER(4,2);
+```
+##Tipo Asignaturas-Notas
+``` sql
+create or replace NONEDITIONABLE TYPE ASIG_NOTA AS OBJECT(
+    ASIG TASIGNATURAS,
+    NOTA NOTAS
+); 
+```
+##Tabla anidada de Asignaturas-Notas
+``` sql
+create or replace NONEDITIONABLE TYPE ASIG_NOTA_ANIDADA AS TABLE OF ASIG_NOTA;
+
+```
+##Tipo Alumno
+``` sql
+create or replace NONEDITIONABLE TYPE ALUMNO2 UNDER PERSONA(
+    DNI VARCHAR2(10),
+    TELEF TELEFONO,
+    ID_CURSO NUMBER(4),
+    CURSO REF TCURSOS
+    ANIDADA ASIG_NOTA_ANIDADA
+);
+NESTED TABLE ANIDADA STORE AS ASIGNOTA_ANIDADA
+```
+##Tabla Alumno
+``` sql
+CREATE TABLE TABLA_ALUMNOS OF ALUMNO2(
+  DNI PRIMARY KEY
+);
+```
 ##Tipo Notas
 ``` sql
 create or replace NONEDITIONABLE TYPE TNOTAS AS OBJECT(
@@ -37,43 +74,6 @@ create or replace NONEDITIONABLE TYPE TASIGNATURAS AS OBJECT(
 CREATE TABLE TABLA_ASIGNATURAS OF TASIGNATURAS(
   COD_ASIG PRIMARY KEY
 );
-```
-##Tipo Alumno
-``` sql
-create or replace NONEDITIONABLE TYPE ALUMNO2 UNDER PERSONA(
-    DNI VARCHAR2(10),
-    TELEF TELEFONO,
-    ID_CURSO NUMBER(4),
-    CURSO REF TCURSOS
-    ANIDADA ASIG_NOTA_ANIDADA
-);
-NESTED TABLE ANIDADA STORE AS ASIGNOTA_ANIDADA
-```
-##Tabla Alumno
-``` sql
-CREATE TABLE TABLA_ALUMNOS OF ALUMNO2(
-  DNI PRIMARY KEY
-);
-```
-##Varray Telefonos
-``` sql
-CREATE TYPE TELEFONO AS VARRAY(2) OF VARCHAR2(15);
-```
-##Varray Notas
-``` sql
-CREATE TYPE NOTAS AS VARRAY(5) OF NUMBER(4,2);
-```
-##Tipo Asignaturas-Notas
-``` sql
-create or replace NONEDITIONABLE TYPE ASIG_NOTA AS OBJECT(
-    ASIG TASIGNATURAS,
-    NOTA NOTAS
-); 
-```
-##Tabla anidada de Asignaturas-Notas
-``` sql
-create or replace NONEDITIONABLE TYPE ASIG_NOTA_ANIDADA AS TABLE OF ASIG_NOTA;
-
 ```
 ##Procedimieto Almacenado
 ``` sql
